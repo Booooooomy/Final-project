@@ -12,21 +12,49 @@ private:
 	int numMath;
 	int numSci;
 	int numComSci;
-	int numOthers;
-	double conGPA;
+	double rawSAT;
+	double rawACT;
 	double conSAT;
 	double conACT;
-	int rawSAT = 0;
-	int rawACT = 0;
+	double conSTS;									// converted standadized score
+	double Engavg;
+	double HSSavg;
+	double Mathavg;
+	double Sciavg;
+	double ComSciavg;
+	double* EngPtr = new double[numEng];
+	double* HSSPtr = new double[numHSS];
+	double* MathPtr = new double[numMath];
+	double* SciPtr = new double[numSci];
+	double* ComSciPtr = new double[numComSci];
 
 public:
-	AppliedStudents(int, int, int, int, int, int, int, int);	// Use of Dynamic Memory Allocation (Chapter 8 - Pointer)
-	virtual void convGPA() = 0;							// Use of Pure Virtual function (Chapter 12 - Polymorphism)
-	void convSAT();
-	void convACT();
+	AppliedStudents(int, int, int, int, int, int, int);	// Use of Dynamic Memory Allocation (Chapter 8 - Pointer)
+	virtual void convGPA() = 0;						        	// Use of Pure Virtual function (Chapter 12 - Polymorphism)
+	void convSAT(double);
+	void convACT(double);
+	void CalcEng(int, double);
+	void setAvgEng(double);
+	void CalcHSS(int, double);
+	void setAvgHSS(double);
+	void CalcMath(int, double);
+	void setAvgMath(double);
+	void CalcSci(int, double);
+	void setAvgSci(double);
+	void CalcComSci(int, double);
+	void setAvgComSci(double);
+	void setconSTS();
+	double getconSTS() const;
+	double getrawSAT() const;
+	double getrawACT() const;
 	double getconSAT() const;
 	double getconACT() const;
-	double getconGPA() const;
+	double getEngavg() const;
+	double getHSSavg() const;
+	double getMathavg() const;
+	double getSciavg() const;
+	double getComSciavg() const;
+	virtual void gradeShow() const = 0;
 };
 
 #endif

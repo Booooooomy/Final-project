@@ -2,6 +2,7 @@
 // CSIS 137 Final project
 
 #include "AppliedStudents.h"
+#include "MathMajor.h"
 #include <iostream>
 using namespace std;							// Student version.
 
@@ -12,18 +13,30 @@ int main()
 	int numMath;
 	int numSci;
 	int numComSci;
-	int numOthers;
 	int rawSAT = 0;
 	int rawACT = 0;
 	int num;
+	double Eng = 0;
+	int Engtot = 0;
+	double HSS = 0;
+	int HSStot = 0;
+	double Math = 0;
+	int Mathtot = 0;
+	double Sci = 0;
+	int Scitot = 0;
+	double ComSci = 0;
+	int ComScitot = 0;
 	char sel;
 
-	cout << "Hello, this is a program that would convert your GPA and test scores" << endl;
+	cout << "Hello, this program will convert your GPA and test scores" << endl;
 	cout << "into a converted score using University of Glendale's own method" << endl;
-	cout << "Please follow the instruction!!" << endl;
+	cout << "Please follow the instruction!!\n" << endl;
 
-	cout << "Eligibility Check - Press 'n' or 'N' if you don't satisfy any of two conditions below" << endl;
-	cout << "					 Press 'y' or 'Y' if you satisfy them" << endl;
+	//Eligibility Check
+
+	cout << "Eligibility Check -" << endl;
+	cout << "Press 'n' or 'N' if you don't satisfy any of two conditions below" << endl;
+	cout << "Press 'y' or 'Y' if you satisfy them \n" << endl;
 	cout << "1) Is your avg GPA higher than 3.5?" << endl;
 	cout << "2) Have you taken either SAT or ACT at least once?" << endl;
 	cin >> sel;
@@ -36,11 +49,9 @@ int main()
 
 	if (sel == 'Y' || sel == 'y')
 	{
-		cout << "Congrats! You can apply to UG!" << endl;
+		cout << "\nCongrats! You can apply to UG!" << endl;
 
-		do
-		{
-			cout << "\n\n\n------------------------- First Step: Standardized Test Score -----------------------\n\n" << endl;
+			cout << "\n\n\n------------------------- First Step: Standardized Test Score -----------------------\n" << endl;
 			cout << "What did you take among those two?" << endl;
 			cout << "1) SAT    2) ACT    3) Both" << endl;
 			cin >> num;
@@ -70,8 +81,20 @@ int main()
 				cout << "Type in your total ACT score out of 36" << endl;
 				cin >> rawACT;
 			}
-			
-			cout << "--------------------------- Second step: about GPA ------------------------------\n\n" << endl;
+
+			while (rawACT > 36 || rawACT < 0)
+			{
+				cout << "The ACT score should be within 0 and 36. Retry." << endl;
+				cin >> rawACT;
+			}
+
+			while (rawSAT > 1600 || rawSAT < 0)
+			{
+				cout << "The SAT score should be within 0 and 1600. Retry." << endl;
+				cin >> rawSAT;
+			}
+
+			cout << "--------------------------- Second step: about GPA ------------------------------\n" << endl;
 			cout << "How many English classes did you take?" << endl;
 			cin >> numEng;
 			cout << "How many History/ Social Sience classes did you take?" << endl;
@@ -82,19 +105,76 @@ int main()
 			cin >> numSci;
 			cout << "How many Computer science classes did you take?" << endl;
 			cin >> numComSci;
-			cout << "How many other classes did you take?" << endl;
-			cin >> numOthers;
 
-			// virtual이므로 여기서 학과 골라서 polymorphism 시전해 주어야 함!!
+			// virtual이므로 여기서 학과 골라서 polymorphism 시전해 주어야 함!!///////////////////////////////////////////////////////////////////
 
+			MathMajor MathA(numEng, numHSS, numMath, numSci, numComSci, rawSAT, rawACT);
 
+			// ABCDF 캐릭터 받는 것도 고려해보도록!
+			cout << "( AP or Honors classes - A: 5, B: 4, C: 3, D: 2, F: 1" << endl;
+			cout << "  Regular classes -      A: 4, B: 3, C: 2, D: 1, F: 0 )" << endl;
+			cout << "According to chart above, type in your grade for each class" << endl;
 
-		} while (sel != 'n' && sel != 'N');
+			for (int i = 0; i < numEng; i++)
+			{
+				cout << "Your English " << (i + 1) << " grade was: " << endl;
+				cin >> Eng;
+				MathA.CalcEng(i,Eng);
+				Engtot += Eng;
+			}
+			
+			MathA.setAvgEng(Engtot);
+
+			for (int i = 0; i < numHSS; i++)
+			{
+				cout << "Your HSS " << (i + 1) << " grade was: " << endl;
+				cin >> HSS;
+				MathA.CalcHSS(i, HSS);
+				HSStot += HSS;
+			}
+
+			MathA.setAvgHSS(HSStot);
+
+			for (int i = 0; i < numMath; i++)
+			{
+				cout << "Your Math " << (i + 1) << " grade was: " << endl;
+				cin >> Math;
+				MathA.CalcMath(i, Math);
+				Mathtot += Math;
+			}
+
+			MathA.setAvgMath(Mathtot);
+
+			for (int i = 0; i < numSci; i++)
+			{
+				cout << "Your Science " << (i + 1) << " grade was: " << endl;
+				cin >> Sci;
+				MathA.CalcSci(i, Sci);
+				Scitot += Sci;
+			}
+
+			MathA.setAvgSci(Scitot);
+
+			for (int i = 0; i < numComSci; i++)
+			{
+				cout << "Your Computer Science " << (i + 1) << " grade was: " << endl;
+				cin >> ComSci;
+				MathA.CalcComSci(i, ComSci);
+				ComScitot += ComSci;
+			}
+
+			MathA.setAvgComSci(ComScitot);
+			MathA.convGPA();					// use of polymorphism!!
+			MathA.convACT(rawACT);
+			MathA.convSAT(rawSAT);
+			MathA.setconSTS();
+			MathA.gradeShow();
+
 	}
 
 	else
 	{
-		cout << "Unfortunately, you don't have an eligibility to apply to UG. Sorry." << endl;
+		cout << "Unfortunately, you don't satisfy an eligibility to apply to UG. Sorry." << endl;
 	}
 
 	system("PAUSE");
