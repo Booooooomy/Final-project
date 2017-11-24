@@ -3,6 +3,8 @@
 
 #include "AppliedStudents.h"
 #include "MathMajor.h"
+#include "ComSciMajor.h"
+#include "EnglishMajor.h"
 #include <iostream>
 using namespace std;							// Student version.
 
@@ -16,16 +18,17 @@ int main()
 	int rawSAT = 0;
 	int rawACT = 0;
 	int num;
+	int sel2;
 	double Eng = 0;
-	int Engtot = 0;
+	double Engtot = 0;
 	double HSS = 0;
-	int HSStot = 0;
+	double HSStot = 0;
 	double Math = 0;
-	int Mathtot = 0;
+	double Mathtot = 0;
 	double Sci = 0;
-	int Scitot = 0;
+	double Scitot = 0;
 	double ComSci = 0;
-	int ComScitot = 0;
+	double ComScitot = 0;
 	char sel;
 
 	cout << "Hello, this program will convert your GPA and test scores" << endl;
@@ -106,11 +109,39 @@ int main()
 			cout << "How many Computer science classes did you take?" << endl;
 			cin >> numComSci;
 
-			// virtual이므로 여기서 학과 골라서 polymorphism 시전해 주어야 함!!///////////////////////////////////////////////////////////////////
+			cout << "\n\n\nWhich major of UG do you want to apply to?" << endl;
+			cout << "1) Math 2)ComSci 3) English" << endl;
+			cin >> sel2;
 
-			MathMajor MathA(numEng, numHSS, numMath, numSci, numComSci, rawSAT, rawACT);
+			AppliedStudents* BasePtr = nullptr;				// using Base pointer pointing to Derived object
+															// initializing with nullptr
 
+			while (sel2 != 1 && sel2 != 2 && sel2 != 3)
+			{
+				cout << "Invalid. Choose among 1 to 3" << endl;
+				cin >> sel2;
+			}
+
+			if (sel2 == 1)
+			{
+				MathMajor MathA(numEng, numHSS, numMath, numSci, numComSci, rawSAT, rawACT);
+				BasePtr = &MathA;
+			}
+
+			if (sel2 == 2)
+			{
+				EnglishMajor EngA(numEng, numHSS, numMath, numSci, numComSci, rawSAT, rawACT);
+				BasePtr = &EngA;
+			}
+
+			if (sel2 == 3)
+			{
+				ComSciMajor ComSciA(numEng, numHSS, numMath, numSci, numComSci, rawSAT, rawACT);
+				BasePtr = &ComSciA;
+			}
+			
 			// ABCDF 캐릭터 받는 것도 고려해보도록!
+
 			cout << "( AP or Honors classes - A: 5, B: 4, C: 3, D: 2, F: 1" << endl;
 			cout << "  Regular classes -      A: 4, B: 3, C: 2, D: 1, F: 0 )" << endl;
 			cout << "According to chart above, type in your grade for each class" << endl;
@@ -119,56 +150,52 @@ int main()
 			{
 				cout << "Your English " << (i + 1) << " grade was: " << endl;
 				cin >> Eng;
-				MathA.CalcEng(i,Eng);
+				BasePtr->CalcEng(i,Eng);
 				Engtot += Eng;
-			}
-			
-			MathA.setAvgEng(Engtot);
+			}			
+			BasePtr->setAvgEng(Engtot);
 
 			for (int i = 0; i < numHSS; i++)
 			{
 				cout << "Your HSS " << (i + 1) << " grade was: " << endl;
 				cin >> HSS;
-				MathA.CalcHSS(i, HSS);
+				BasePtr->CalcHSS(i, HSS);
 				HSStot += HSS;
 			}
-
-			MathA.setAvgHSS(HSStot);
+			BasePtr->setAvgHSS(HSStot);
 
 			for (int i = 0; i < numMath; i++)
 			{
 				cout << "Your Math " << (i + 1) << " grade was: " << endl;
 				cin >> Math;
-				MathA.CalcMath(i, Math);
+				BasePtr->CalcMath(i, Math);
 				Mathtot += Math;
 			}
-
-			MathA.setAvgMath(Mathtot);
+			BasePtr->setAvgMath(Mathtot);
 
 			for (int i = 0; i < numSci; i++)
 			{
 				cout << "Your Science " << (i + 1) << " grade was: " << endl;
 				cin >> Sci;
-				MathA.CalcSci(i, Sci);
+				BasePtr->CalcSci(i, Sci);
 				Scitot += Sci;
 			}
-
-			MathA.setAvgSci(Scitot);
+			BasePtr->setAvgSci(Scitot);
 
 			for (int i = 0; i < numComSci; i++)
 			{
 				cout << "Your Computer Science " << (i + 1) << " grade was: " << endl;
 				cin >> ComSci;
-				MathA.CalcComSci(i, ComSci);
+				BasePtr->CalcComSci(i, ComSci);
 				ComScitot += ComSci;
 			}
+			BasePtr->setAvgComSci(ComScitot);
 
-			MathA.setAvgComSci(ComScitot);
-			MathA.convGPA();					// use of polymorphism!!
-			MathA.convACT(rawACT);
-			MathA.convSAT(rawSAT);
-			MathA.setconSTS();
-			MathA.gradeShow();
+			BasePtr->convGPA();					// use of polymorphism!!
+			BasePtr->convACT(rawACT);
+			BasePtr->convSAT(rawSAT);
+			BasePtr->setconSTS();
+			BasePtr->gradeShow();
 
 	}
 

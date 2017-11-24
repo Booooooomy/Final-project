@@ -5,8 +5,15 @@
 #include <iostream>
 using namespace std;
 
-AppliedStudents::AppliedStudents(int numEng, int numHSS, int numMath, int numSci, int numComSci, int rawSAT, int rawACT)
+AppliedStudents::AppliedStudents(int E, int H, int M, int S, int C, int SA, int AC)
 {
+	numEng = E;
+	numHSS = H;
+	numMath = M;
+	numSci = S;
+	numComSci = C;
+	rawSAT = SA;
+	rawACT = AC;
 }
 
 void AppliedStudents:: convSAT(double rSAT)

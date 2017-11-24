@@ -17,11 +17,11 @@ private:
 	double conSAT;
 	double conACT;
 	double conSTS;									// converted standadized score
-	double Engavg;
-	double HSSavg;
-	double Mathavg;
-	double Sciavg;
-	double ComSciavg;
+	double Engavg = 0;
+	double HSSavg = 0;
+	double Mathavg = 0;
+	double Sciavg = 0;
+	double ComSciavg = 0;
 	double* EngPtr = new double[numEng];
 	double* HSSPtr = new double[numHSS];
 	double* MathPtr = new double[numMath];
@@ -29,7 +29,7 @@ private:
 	double* ComSciPtr = new double[numComSci];
 
 public:
-	AppliedStudents(int, int, int, int, int, int, int);	// Use of Dynamic Memory Allocation (Chapter 8 - Pointer)
+	AppliedStudents(int, int, int, int, int, int, int);			// Use of Dynamic Memory Allocation (Chapter 8 - Pointer)
 	virtual void convGPA() = 0;						        	// Use of Pure Virtual function (Chapter 12 - Polymorphism)
 	void convSAT(double);
 	void convACT(double);
