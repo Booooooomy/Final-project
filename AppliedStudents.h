@@ -1,10 +1,13 @@
 // Beomjoo KIM
 // CSIS 137 Final project
 
+#include <string>
+using namespace std;
+
 #ifndef APPLIEDSTUDENTS_H
 #define APPLIEDSTUDENTS_H
 
-class AppliedStudents		// Abstract Base class - Use of inheritance (Chapter 11 - inheritance)
+class AppliedStudents						// Abstract Base class - Use of inheritance (Chapter 11 - inheritance)
 {
 private:
 	int numEng;
@@ -27,10 +30,13 @@ private:
 	double* MathPtr = new double[numMath];
 	double* SciPtr = new double[numSci];
 	double* ComSciPtr = new double[numComSci];
+	string name;
 
 public:
-	AppliedStudents(int, int, int, int, int, int, int);			// Use of Dynamic Memory Allocation (Chapter 8 - Pointer)
-	virtual void convGPA() = 0;						        	// Use of Pure Virtual function (Chapter 12 - Polymorphism)
+	AppliedStudents(int = 0, int = 0, int = 0, int = 0, int = 0, int = 0, int = 0);			// Use of Dynamic Memory Allocation (Chapter 8 - Pointer)
+	virtual void convGPA() = 0;						        	// Use of Pure Virtual function     (Chapter 12 - Polymorphism)
+	virtual void gradeShow() const = 0;
+	virtual void settotScore() = 0;
 	void convSAT(double);
 	void convACT(double);
 	void CalcEng(int, double);
@@ -44,6 +50,8 @@ public:
 	void CalcComSci(int, double);
 	void setAvgComSci(double);
 	void setconSTS();
+	void setName(string);
+	string getName() const;
 	double getconSTS() const;
 	double getrawSAT() const;
 	double getrawACT() const;
@@ -54,7 +62,6 @@ public:
 	double getMathavg() const;
 	double getSciavg() const;
 	double getComSciavg() const;
-	virtual void gradeShow() const = 0;
 };
 
 #endif

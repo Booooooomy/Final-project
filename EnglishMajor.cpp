@@ -33,3 +33,8 @@ void EnglishMajor::gradeShow() const
 	cout << "Your converted Standadized Score: " << getconSTS() << endl;
 	cout << "Your total converted Score:       " << getconGPA() + getconSTS() << endl;
 }
+
+void EnglishMajor::settotScore()
+{
+	totScore = conGPA + getconSTS();
+}

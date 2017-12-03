@@ -3,6 +3,7 @@
 
 #include "AppliedStudents.h"
 #include <iostream>
+#include <string>
 using namespace std;
 
 AppliedStudents::AppliedStudents(int E, int H, int M, int S, int C, int SA, int AC)
@@ -84,6 +85,16 @@ void AppliedStudents::setconSTS()
 		conSTS = conSAT;
 	else
 		conSTS = conACT;
+}
+
+void AppliedStudents::setName(string str)
+{
+	name = str;
+}
+
+string AppliedStudents::getName() const
+{
+	return name;
 }
 
 double AppliedStudents::getconSTS()const

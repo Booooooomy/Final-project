@@ -31,3 +31,8 @@ void ComSciMajor::gradeShow() const
 	cout << "Your converted Standadized Score: " << getconSTS() << endl;
 	cout << "Your total converted Score:       " << getconGPA() + getconSTS() << endl;
 }
+
+void ComSciMajor::settotScore()
+{
+	totScore = conGPA + getconSTS();
+}
