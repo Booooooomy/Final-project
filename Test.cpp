@@ -10,15 +10,15 @@ using namespace std;
 
 int main()
 {
-	cout << "************ Program 1: Student version ************\n\n\n" << endl;
+	cout << "************ Student version ************\n\n\n" << endl;
 	// This part is for each student to plug in their own GPA and SAT or ACT scores so that the school can have the converted score of each student.
 
 	string name;
-	int numEng;
-	int numHSS;
-	int numMath;
-	int numSci;
-	int numComSci;
+	int numEng = 0;
+	int numHSS = 0;
+	int numMath = 0;
+	int numSci = 0;
+	int numComSci = 0;
 	int rawSAT = 0;
 	int rawACT = 0;
 	int num;
@@ -38,13 +38,22 @@ int main()
 	cout << "Hello, this program will convert your GPA and test scores" << endl;
 	cout << "into a converted score using University of Glendale's own method" << endl;
 	cout << "Please follow the instruction!!\n" << endl;
-
 	cout << "Your name?" << endl;
 	getline(cin, name);
 
+	cout << "\n\n\nWhich major of UG do you want to apply to?" << endl;
+		cout << "1) Math 2)ComSci 3) English" << endl;
+		cin >> sel2;
+
+		while (sel2 != 1 && sel2 != 2 && sel2 != 3)
+		{
+			cout << "Invalid. Choose among 1 to 3" << endl;
+			cin >> sel2;
+		}
+
 	//Eligibility Check
 
-	cout << "Eligibility Check -" << endl;
+	cout << "\n\nEligibility Check -" << endl;
 	cout << "Press 'n' or 'N' if you don't satisfy any of two conditions below" << endl;
 	cout << "Press 'y' or 'Y' if you satisfy them \n" << endl;
 	cout << "1) Is your avg GPA higher than 3.5?" << endl;
@@ -60,7 +69,6 @@ int main()
 	if (sel == 'Y' || sel == 'y')
 	{
 		cout << "\nCongrats! You can apply to UG!" << endl;
-
 		cout << "\n\n\n------------------------- First Step: Standardized Test Score -----------------------\n" << endl;
 		cout << "What did you take among those two?" << endl;
 		cout << "1) SAT    2) ACT    3) Both" << endl;
@@ -116,34 +124,25 @@ int main()
 		cout << "How many Computer science classes did you take?" << endl;
 		cin >> numComSci;
 
-		cout << "\n\n\nWhich major of UG do you want to apply to?" << endl;
-		cout << "1) Math 2)ComSci 3) English" << endl;
-		cin >> sel2;
-
 		AppliedStudents* BasePtr = nullptr;				// using Base pointer pointing to Derived object
 														// initializing with nullptr
 
-		while (sel2 != 1 && sel2 != 2 && sel2 != 3)
-		{
-			cout << "Invalid. Choose among 1 to 3" << endl;
-			cin >> sel2;
-		}
+		MathMajor MathA(numEng, numHSS, numMath, numSci, numComSci, rawSAT, rawACT);
+		EnglishMajor EngA(numEng, numHSS, numMath, numSci, numComSci, rawSAT, rawACT);
+		ComSciMajor ComSciA(numEng, numHSS, numMath, numSci, numComSci, rawSAT, rawACT);
 
 		if (sel2 == 1)
 		{
-			MathMajor MathA(numEng, numHSS, numMath, numSci, numComSci, rawSAT, rawACT);
 			BasePtr = &MathA;
 		}
 
 		if (sel2 == 2)
 		{
-			EnglishMajor EngA(numEng, numHSS, numMath, numSci, numComSci, rawSAT, rawACT);
 			BasePtr = &EngA;
 		}
 
 		if (sel2 == 3)
 		{
-			ComSciMajor ComSciA(numEng, numHSS, numMath, numSci, numComSci, rawSAT, rawACT);
 			BasePtr = &ComSciA;
 		}
 
@@ -196,13 +195,17 @@ int main()
 		}
 		BasePtr->setAvgComSci(ComScitot);
 
-		BasePtr->convGPA();					// use of polymorphism!!
+		BasePtr->convGPA();					// Each major has identical method of converting GPA to their own converted grade - use of polymorphism!!
 		BasePtr->convACT(rawACT);
 		BasePtr->convSAT(rawSAT);
 		BasePtr->setName(name);
 		BasePtr->setconSTS();
 		BasePtr->settotScore();
-		BasePtr->gradeShow();
+	//	BasePtr->gradeShow();
+
+		cout << MathA;
+		cout << EngA;
+		cout << ComSciA;
 	}
 
 	else
@@ -210,7 +213,7 @@ int main()
 		cout << "Unfortunately, you don't satisfy an eligibility to apply to UG. Sorry." << endl;
 	}
 
-	cout << "\n******************* End of student program.************************\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n************************ Program 2: University of Glendale version ****************\n\n\n\n\n" << endl;
+	cout << "\n******************* End of student program ***********************" << endl;
 
 	system("PAUSE");
 	return 0;

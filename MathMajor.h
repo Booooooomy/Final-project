@@ -6,8 +6,10 @@
 
 class MathMajor : public AppliedStudents
 {
+	friend ostream& operator<<(ostream&, const MathMajor&);		// Use of Operator Overloading
+
 private:
-	double conGPA;
+	double conGPA = 0;
 	double totScore = 0;
 
 public:
@@ -15,14 +17,8 @@ public:
 	double getconGPA() const;
 	double gettotScore() const;
 	virtual void convGPA() override;
-	virtual void gradeShow() const override;
+	//virtual void gradeShow() const override;
 	virtual void settotScore() override;
-
-	// Below are for program 2
-
-	bool operator > (const MathMajor) const;				// Use of operator overloading (Chapter 10)
-	bool operator < (const MathMajor) const;
-	MathMajor operator = (const MathMajor);
 };
 
 #endif

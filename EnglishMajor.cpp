@@ -17,6 +17,30 @@ double EnglishMajor::getconGPA() const
 	return conGPA;
 }
 
+ostream& operator<<(ostream& output, const EnglishMajor& Eng)
+{
+	if (Eng.gettotScore() != 0)
+	{
+		output << "\n\nWhen English division of University of Glendale convert student's GPA," << endl
+			<< "We consider English GPA 60%, and all other subjects 10% each." << endl
+			<< "Maximum converted GPA is 10 (however, if you took AP or Honors, it's possible to get higher)\n\n" << endl
+			<< "Your Math GPA:                    " << Eng.getMathavg() << endl
+			<< "Your Science GPA:                 " << Eng.getSciavg() << endl
+			<< "Your English GPA:                 " << Eng.getEngavg() << endl
+			<< "Your HSS GPA:                     " << Eng.getHSSavg() << endl
+			<< "Your Computer Science GPA:        " << Eng.getComSciavg() << endl
+			<< "Your converted GPA:               " << Eng.getconGPA() << "\n" << endl
+			<< "Your raw SAT:                     " << Eng.getrawSAT() << endl
+			<< "Your raw ACT:                     " << Eng.getrawACT() << endl
+			<< "Your converted Standadized Score: " << Eng.getconSTS() << endl
+			<< "Your total converted Score:       " << Eng.gettotScore() << endl;
+	}
+	else output;
+
+	return output;
+}
+
+/*
 void EnglishMajor::gradeShow() const
 {
 	cout << "\n\nWhen English division of University of Glendale convert student's GPA," << endl;
@@ -31,10 +55,15 @@ void EnglishMajor::gradeShow() const
 	cout << "Your raw SAT:                     " << getrawSAT() << endl;
 	cout << "Your raw ACT:                     " << getrawACT() << endl;
 	cout << "Your converted Standadized Score: " << getconSTS() << endl;
-	cout << "Your total converted Score:       " << getconGPA() + getconSTS() << endl;
+	cout << "Your total converted Score:       " << gettotScore() << endl;
 }
-
+*/
 void EnglishMajor::settotScore()
 {
 	totScore = conGPA + getconSTS();
+}
+
+double EnglishMajor::gettotScore() const
+{
+	return totScore;
 }

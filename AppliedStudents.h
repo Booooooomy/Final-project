@@ -19,7 +19,7 @@ private:
 	double rawACT;
 	double conSAT;
 	double conACT;
-	double conSTS;									// converted standadized score
+	double conSTS;									// converted standardized score
 	double Engavg = 0;
 	double HSSavg = 0;
 	double Mathavg = 0;
@@ -34,8 +34,8 @@ private:
 
 public:
 	AppliedStudents(int = 0, int = 0, int = 0, int = 0, int = 0, int = 0, int = 0);			// Use of Dynamic Memory Allocation (Chapter 8 - Pointer)
-	virtual void convGPA() = 0;						        	// Use of Pure Virtual function     (Chapter 12 - Polymorphism)
-	virtual void gradeShow() const = 0;
+	virtual void convGPA() = 0;						        								// Use of Pure Virtual function     (Chapter 12 - Polymorphism)
+//	virtual void gradeShow() const = 0;
 	virtual void settotScore() = 0;
 	void convSAT(double);
 	void convACT(double);
