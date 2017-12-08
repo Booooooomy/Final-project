@@ -111,17 +111,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ACTrange.cpp" />
     <ClCompile Include="AppliedStudents.cpp" />
     <ClCompile Include="ComSciMajor.cpp" />
     <ClCompile Include="EnglishMajor.cpp" />
     <ClCompile Include="MathMajor.cpp" />
+    <ClCompile Include="SATrange.cpp" />
     <ClCompile Include="Test.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ACTrange.h" />
     <ClInclude Include="AppliedStudents.h" />
     <ClInclude Include="ComSciMajor.h" />
     <ClInclude Include="EnglishMajor.h" />
     <ClInclude Include="MathMajor.h" />
+    <ClInclude Include="SATrange.h" />
+    <ClInclude Include="Toohigh.h" />
+    <ClInclude Include="Toolow.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -30,6 +30,12 @@
     <ClCompile Include="ComSciMajor.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="SATrange.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="ACTrange.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AppliedStudents.h">
@@ -42,6 +48,18 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="EnglishMajor.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="ACTrange.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="SATrange.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Toohigh.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Toolow.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

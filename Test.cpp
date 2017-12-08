@@ -5,6 +5,10 @@
 #include "MathMajor.h"
 #include "ComSciMajor.h"
 #include "EnglishMajor.h"
+#include "Toohigh.h"
+#include "Toolow.h"
+#include "ACTrange.h"
+#include "SATrange.h"
 #include <iostream>
 using namespace std;
 
@@ -34,6 +38,8 @@ int main()
 	double ComSci = 0;
 	double ComScitot = 0;
 	char sel;
+	ACTRange ACT;
+	SATRange SAT;
 
 	cout << "Hello, this program will convert your GPA and test scores" << endl;
 	cout << "into a converted score using University of Glendale's own method" << endl;
@@ -83,33 +89,88 @@ int main()
 		if (num == 1)
 		{
 			cout << "Type in your total SAT score out of 1600" << endl;
-			cin >> rawSAT;
+			do
+			{
+				try
+				{
+					rawSAT = SAT.getInput();
+				}
+
+				catch (TooHigh& toohigh)
+				{
+					cout << toohigh.what();
+				}
+
+				catch (TooLow& toolow)
+				{
+					cout << toolow.what();
+				}
+
+			} while (rawSAT == NULL || rawSAT == 0);
 		}
 
 		else if (num == 2)
 		{
 			cout << "Type in your total ACT score out of 36" << endl;
-			cin >> rawACT;
+
+			do
+			{
+				try
+				{
+					rawACT = ACT.getInput();
+				}
+	
+				catch (TooHigh& toohigh)
+				{
+					cout << toohigh.what();
+				}
+
+				catch (TooLow& toolow)
+				{
+					cout << toolow.what();
+				}
+			} while (rawACT == NULL || rawACT == 0);
 		}
 
 		else
 		{
 			cout << "Type in your total SAT score out of 1600" << endl;
-			cin >> rawSAT;
+			do
+			{
+				try
+				{
+					rawSAT = SAT.getInput();
+				}
+
+				catch (TooHigh& toohigh)
+				{
+					cout << toohigh.what();
+				}
+
+				catch (TooLow& toolow)
+				{
+					cout << toolow.what();
+				}
+			} while (rawSAT == NULL || rawSAT == 0);
+
 			cout << "Type in your total ACT score out of 36" << endl;
-			cin >> rawACT;
-		}
+			do
+			{
+				try
+				{
+					rawACT = ACT.getInput();
+				}
 
-		while (rawACT > 36 || rawACT < 0)
-		{
-			cout << "The ACT score should be within 0 and 36. Retry." << endl;
-			cin >> rawACT;
-		}
+				catch (TooHigh& toohigh)
+				{
+					cout << toohigh.what();
+				}
 
-		while (rawSAT > 1600 || rawSAT < 0)
-		{
-			cout << "The SAT score should be within 0 and 1600. Retry." << endl;
-			cin >> rawSAT;
+				catch (TooLow& toolow)
+				{
+					cout << toolow.what();
+				}
+			} while (rawACT == NULL || rawACT == 0);
 		}
 
 		cout << "--------------------------- Second step: about GPA ------------------------------\n" << endl;
@@ -201,7 +262,6 @@ int main()
 		BasePtr->setName(name);
 		BasePtr->setconSTS();
 		BasePtr->settotScore();
-	//	BasePtr->gradeShow();
 
 		cout << MathA;
 		cout << EngA;

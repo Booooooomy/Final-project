@@ -38,23 +38,6 @@ double MathMajor::getconGPA() const
 	return conGPA;
 }
 
-/*
-void MathMajor::gradeShow() const
-{
-	cout << "\n\nWhen Math division of University of Glendale convert student's GPA," << endl;
-	cout << "We consider Math 50%, Science 30% and English 20%." << endl;
-	cout << "Maximum converted GPA is 10 (however, if you took AP or Honors, it's possible to get higher)\n\n" << endl;
-	cout << "Your name:                        " << getName() << endl;
-	cout << "Your Math GPA:                    " << getMathavg() << endl;
-	cout << "Your Science GPA:                 " << getSciavg() << endl;
-	cout << "Your English GPA:                 " << getEngavg() << endl;
-	cout << "Your converted GPA:               " << getconGPA() << "\n" << endl;
-	cout << "Your raw SAT:                     " << getrawSAT() << endl;
-	cout << "Your raw ACT:                     " << getrawACT() << endl;
-	cout << "Your converted Standadized Score: " << getconSTS() << endl;
-	cout << "Your total converted Score:       " << gettotScore() << endl;
-}
-*/
 void MathMajor::settotScore()
 {
 	totScore = conGPA + getconSTS();

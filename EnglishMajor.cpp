@@ -40,24 +40,6 @@ ostream& operator<<(ostream& output, const EnglishMajor& Eng)
 	return output;
 }
 
-/*
-void EnglishMajor::gradeShow() const
-{
-	cout << "\n\nWhen English division of University of Glendale convert student's GPA," << endl;
-	cout << "We consider English GPA 60%, and all other subjects 10% each." << endl;
-	cout << "Maximum converted GPA is 10 (however, if you took AP or Honors, it's possible to get higher)\n\n" << endl;
-	cout << "Your Math GPA:                    " << getMathavg() << endl;
-	cout << "Your Science GPA:                 " << getSciavg() << endl;
-	cout << "Your English GPA:                 " << getEngavg() << endl;
-	cout << "Your HSS GPA:                     " << getHSSavg() << endl;
-	cout << "Your Computer Science GPA:        " << getComSciavg() << endl;
-	cout << "Your converted GPA:               " << getconGPA() << "\n" << endl;
-	cout << "Your raw SAT:                     " << getrawSAT() << endl;
-	cout << "Your raw ACT:                     " << getrawACT() << endl;
-	cout << "Your converted Standadized Score: " << getconSTS() << endl;
-	cout << "Your total converted Score:       " << gettotScore() << endl;
-}
-*/
 void EnglishMajor::settotScore()
 {
 	totScore = conGPA + getconSTS();

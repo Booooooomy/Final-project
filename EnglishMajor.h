@@ -16,7 +16,6 @@ public:
 	double getconGPA() const;
 	double gettotScore() const;
 	virtual void convGPA() override;
-	//virtual void gradeShow() const override;
 	virtual void settotScore() override;
 };
 

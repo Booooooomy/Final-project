@@ -16,22 +16,6 @@ double ComSciMajor::getconGPA() const
 {
 	return conGPA;
 }
-/*
-void ComSciMajor::gradeShow() const
-{
-	cout << "\n\nWhen CS division of University of Glendale convert student's GPA," << endl;
-	cout << "We consider Math 30%, Science 50% and English 20%." << endl;
-	cout << "Maximum converted GPA is 10 (however, if you took AP or Honors, it's possible to get higher)\n\n" << endl;
-	cout << "Your Math GPA:                    " << getMathavg() << endl;
-	cout << "Your Science GPA:                 " << getSciavg() << endl;
-	cout << "Your English GPA:                 " << getEngavg() << endl;
-	cout << "Your converted GPA:               " << getconGPA() << "\n" << endl;
-	cout << "Your raw SAT:                     " << getrawSAT() << endl;
-	cout << "Your raw ACT:                     " << getrawACT() << endl;
-	cout << "Your converted Standadized Score: " << getconSTS() << endl;
-	cout << "Your total converted Score:       " << gettotScore() << endl;
-}
-*/
 
 ostream& operator<<(ostream& output, const ComSciMajor& Com)
 {
