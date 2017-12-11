@@ -125,6 +125,7 @@
     <ClInclude Include="ComSciMajor.h" />
     <ClInclude Include="EnglishMajor.h" />
     <ClInclude Include="MathMajor.h" />
+    <ClInclude Include="numValidate.h" />
     <ClInclude Include="SATrange.h" />
     <ClInclude Include="Toohigh.h" />
     <ClInclude Include="Toolow.h" />

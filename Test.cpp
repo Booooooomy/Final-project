@@ -11,6 +11,7 @@
 #include "SATrange.h"
 #include <iostream>
 using namespace std;
+#include "numValidate.h"
 
 int main()
 {
@@ -38,8 +39,14 @@ int main()
 	double ComSci = 0;
 	double ComScitot = 0;
 	char sel;
+	bool bE = true;
+	bool bH = true;
+	bool bM = true;
+	bool bS = true;
+	bool bC = true;
 	ACTRange ACT;
 	SATRange SAT;
+	numValidate NV;
 
 	cout << "Hello, this program will convert your GPA and test scores" << endl;
 	cout << "into a converted score using University of Glendale's own method" << endl;
@@ -89,6 +96,7 @@ int main()
 		if (num == 1)
 		{
 			cout << "Type in your total SAT score out of 1600" << endl;
+			
 			do
 			{
 				try
@@ -174,16 +182,70 @@ int main()
 		}
 
 		cout << "--------------------------- Second step: about GPA ------------------------------\n" << endl;
-		cout << "How many English classes did you take?" << endl;
+		cout << "How many English classes did you take?\n If you didn't take such class, type 0" << endl;
 		cin >> numEng;
-		cout << "How many History/ Social Sience classes did you take?" << endl;
+		
+		try
+		{
+			numEng = NV.numvalidate(numEng);
+		}
+				catch (int x)
+		{
+			numEng = 1;
+			bE = false;
+		}
+
+		cout << "How many History/ Social Sience classes did you take?\n If you didn't take such class, type 0" << endl;
 		cin >> numHSS;
-		cout << "How many Math classes did you take?" << endl;
+
+		try
+		{
+			numHSS = NV.numvalidate(numHSS);
+		}
+		catch (int x)
+		{
+			numHSS = 1;
+			bH = false;
+		}
+
+		cout << "How many Math classes did you take?\n If you didn't take such class, type 0" << endl;
 		cin >> numMath;
-		cout << "How many Science classes did you take?" << endl;
+
+		try
+		{
+			numMath = NV.numvalidate(numMath);
+		}
+		catch (int x)
+		{
+			numMath = 1;
+			bM = false;
+		}
+
+		cout << "How many Science classes did you take?\n If you didn't take such class, type 0" << endl;
 		cin >> numSci;
-		cout << "How many Computer science classes did you take?" << endl;
+
+		try
+		{
+			numSci = NV.numvalidate(numSci);
+		}
+		catch (int x)
+		{
+			numSci = 1;
+			bS = false;
+		}
+
+		cout << "How many Computer science classes did you take?\n If you didn't take such class, type 0" << endl;
 		cin >> numComSci;
+
+		try
+		{
+			numComSci = NV.numvalidate(numComSci);
+		}
+		catch (int x)
+		{
+			numComSci = 1;
+			bC = false;
+		}
 
 		AppliedStudents* BasePtr = nullptr;				// using Base pointer pointing to Derived object
 														// initializing with nullptr
@@ -210,53 +272,67 @@ int main()
 		cout << "( AP or Honors classes - A: 5, B: 4, C: 3, D: 2, F: 1" << endl;
 		cout << "  Regular classes -      A: 4, B: 3, C: 2, D: 1, F: 0 )" << endl;
 		cout << "According to chart above, type in your grade for each class" << endl;
-
-		for (int i = 0; i < numEng; i++)
+		while (bE) 
 		{
-			cout << "Your English " << (i + 1) << " grade was: " << endl;
-			cin >> Eng;
-			BasePtr->CalcEng(i, Eng);
-			Engtot += Eng;
+			for (int i = 0; i < numEng; i++)
+			{
+				cout << "Your English " << (i + 1) << " grade was: " << endl;
+				cin >> Eng;
+				BasePtr->CalcEng(i, Eng);
+				Engtot += Eng;
+			}
+			BasePtr->setAvgEng(Engtot);
 		}
-		BasePtr->setAvgEng(Engtot);
 
-		for (int i = 0; i < numHSS; i++)
+		while (bH)
 		{
-			cout << "Your HSS " << (i + 1) << " grade was: " << endl;
-			cin >> HSS;
-			BasePtr->CalcHSS(i, HSS);
-			HSStot += HSS;
+			for (int i = 0; i < numHSS; i++)
+			{
+				cout << "Your HSS " << (i + 1) << " grade was: " << endl;
+				cin >> HSS;
+				BasePtr->CalcHSS(i, HSS);
+				HSStot += HSS;
+			}
+			BasePtr->setAvgHSS(HSStot);
 		}
-		BasePtr->setAvgHSS(HSStot);
 
-		for (int i = 0; i < numMath; i++)
+		while (bM)
 		{
-			cout << "Your Math " << (i + 1) << " grade was: " << endl;
-			cin >> Math;
-			BasePtr->CalcMath(i, Math);
-			Mathtot += Math;
+			for (int i = 0; i < numMath; i++)
+			{
+				cout << "Your Math " << (i + 1) << " grade was: " << endl;
+				cin >> Math;
+				BasePtr->CalcMath(i, Math);
+				Mathtot += Math;
+			}
+			BasePtr->setAvgMath(Mathtot);
 		}
-		BasePtr->setAvgMath(Mathtot);
 
-		for (int i = 0; i < numSci; i++)
+		while (bS)
 		{
-			cout << "Your Science " << (i + 1) << " grade was: " << endl;
-			cin >> Sci;
-			BasePtr->CalcSci(i, Sci);
-			Scitot += Sci;
+			for (int i = 0; i < numSci; i++)
+			{
+				cout << "Your Science " << (i + 1) << " grade was: " << endl;
+				cin >> Sci;
+				BasePtr->CalcSci(i, Sci);
+				Scitot += Sci;
+			}
+			BasePtr->setAvgSci(Scitot);
 		}
-		BasePtr->setAvgSci(Scitot);
 
-		for (int i = 0; i < numComSci; i++)
+		while (bC)
 		{
-			cout << "Your Computer Science " << (i + 1) << " grade was: " << endl;
-			cin >> ComSci;
-			BasePtr->CalcComSci(i, ComSci);
-			ComScitot += ComSci;
+			for (int i = 0; i < numComSci; i++)
+			{
+				cout << "Your Computer Science " << (i + 1) << " grade was: " << endl;
+				cin >> ComSci;
+				BasePtr->CalcComSci(i, ComSci);
+				ComScitot += ComSci;
+			}
+			BasePtr->setAvgComSci(ComScitot);
 		}
-		BasePtr->setAvgComSci(ComScitot);
 
-		BasePtr->convGPA();					// Each major has identical method of converting GPA to their own converted grade - use of polymorphism!!
+		BasePtr->convGPA();					// Each major has its own method of converting GPA to their own converted grade - use of polymorphism!!
 		BasePtr->convACT(rawACT);
 		BasePtr->convSAT(rawSAT);
 		BasePtr->setName(name);
